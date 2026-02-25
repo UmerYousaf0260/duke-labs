@@ -1,0 +1,181 @@
+{
+  "hero": {
+    "badge": "Schedule a call",
+    "title": "We Bring Ideas into",
+    "titleHighlight": "Intelligent Digital Reality",
+    "subtitle": "AI-driven systems, scalable web & mobile apps, immersive games, and refined UI/UX — engineered to turn vision into measurable impact.",
+    "stats": [
+      {
+        "number": "50+",
+        "label": "Projects Delivered"
+      },
+      {
+        "number": "20+",
+        "label": "Global Clients"
+      },
+      {
+        "number": "8+",
+        "label": "Years of Experience"
+      }
+    ]
+  },
+  "about": {
+    "tag": "ABOUT US",
+    "title": "Building Digital Excellence",
+    "subtitle": "We're a team of designers, engineers, and innovators dedicated to creating transformative digital experiences. From concept to launch, we partner with visionary companies to bring ideas to life.",
+    "cards": [
+      {
+        "title": "Expert Team",
+        "description": "Industry veterans with 15+ years combined experience across web, mobile, AI, and game development."
+      },
+      {
+        "title": "Innovative Solutions",
+        "description": "Cutting-edge technologies and creative approaches to solve complex business challenges."
+      },
+      {
+        "title": "Client Focused",
+        "description": "Your success is our mission. We collaborate closely to ensure every project exceeds expectations."
+      }
+    ]
+  },
+  "services": {
+    "tag": "WHAT WE DO",
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions tailored to your unique business needs",
+    "cards": [
+      {
+        "title": "Web Development",
+        "description": "Responsive, high-performance web applications built with modern frameworks and best practices. From simple sites to complex platforms.",
+        "tags": ["React", "Next.js", "Node.js"],
+        "icon": "web-dev"
+      },
+      {
+        "title": "App Development",
+        "description": "Native and cross-platform mobile applications that deliver seamless user experiences across iOS and Android.",
+        "tags": ["Flutter", "Swift", "Kotlin"],
+        "icon": "app-dev"
+      },
+      {
+        "title": "AI Solutions",
+        "description": "Custom AI and machine learning solutions that automate processes, enhance analytics, and drive intelligent decision-making.",
+        "tags": ["Python", "TensorFlow", "LLMs"],
+        "icon": "ai-dev"
+      },
+      {
+        "title": "UI/UX Design",
+        "description": "User-centered design that blends aesthetics with functionality. Creating intuitive interfaces that delight users.",
+        "tags": ["Figma", "Design System", "Prototyping"],
+        "icon": "ui-ux"
+      },
+      {
+        "title": "Game Development",
+        "description": "Immersive gaming experiences from concept to launch. 2D, 3D, and multiplayer games built for engagement and retention.",
+        "tags": ["Unity", "Unreal", "WebGL"],
+        "icon": "game-dev"
+      }
+    ]
+  },
+  "work": {
+    "tag": "OUR WORK",
+    "title": "Featured Projects",
+    "subtitle": "Showcasing our latest work across web, mobile, AI, and gaming",
+    "projects": [
+      {
+        "id": 1,
+        "title": "E-Commerce Platform",
+        "description": "A scalable e-commerce solution with AI-powered recommendations and real-time inventory management.",
+        "category": "web-app",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 2,
+        "title": "Fitness Tracker App",
+        "description": "Cross-platform fitness application with ML-based workout recommendations and social features.",
+        "category": "mobile-app",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 3,
+        "title": "3D Strategy Game",
+        "description": "Multiplayer strategy game built with Unreal Engine featuring dynamic environments and real-time gameplay.",
+        "category": "game",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 4,
+        "title": "Predictive Analytics Platform",
+        "description": "Enterprise analytics platform using advanced ML models for business intelligence and forecasting.",
+        "category": "ai-solution",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 5,
+        "title": "SaaS Dashboard Redesign",
+        "description": "Complete UX/UI overhaul for enterprise dashboard resulting in 40% improved user engagement.",
+        "category": "design",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 6,
+        "title": "Social Network Platform",
+        "description": "Full-stack social platform with real-time messaging, content delivery, and community management tools.",
+        "category": "full-stack",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 7,
+        "title": "Real-Time Data Dashboard",
+        "description": "High-performance web dashboard processing millions of data points with live visualizations and analytics.",
+        "category": "web-app",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 8,
+        "title": "Mobile Banking App",
+        "description": "Secure cross-platform banking application with biometric authentication and P2P payment features.",
+        "category": "mobile-app",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 9,
+        "title": "AI Chatbot System",
+        "description": "Intelligent conversational AI system using LLMs for customer support and automation across multiple channels.",
+        "category": "ai-solution",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 10,
+        "title": "WebGL Browser Game",
+        "description": "Engaging browser-based game with physics engine, achievements, and multiplayer capabilities.",
+        "category": "game",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 11,
+        "title": "Design System & Components",
+        "description": "Comprehensive design system with 100+ components, accessibility guidelines, and interactive documentation.",
+        "category": "design",
+        "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
+      },
+      {
+        "id": 12,
+        "title": "Microservices E-Learning Platform",
+        "description": "Scalable e-learning platform with video streaming, progress tracking, and AI-powered personalized learning paths.",
+        "category": "full-stack",
+        "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      }
+    ]
+  },
+  "contact": {
+    "tag": "GET IN TOUCH",
+    "title": "Let's Build Something",
+    "titleSecond": "Amazing Together",
+    "subtitle": "Whether you have a brilliant idea or need expert guidance, we're here to help. Reach out to discuss your project.",
+    "email": "[email protected]",
+    "phone": "+1 (234) 567-890",
+    "location": "San Francisco, CA"
+  },
+  "footer": {
+    "copyright": "© 2026 Duke. Product design & engineering agency. All rights reserved."
+  }
+}

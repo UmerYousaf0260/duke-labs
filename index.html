@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Duke Labs — Product design and engineering agency building web and mobile experiences for startups and businesses." />
+  <title>Duke Labs — Product & Design Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('theme');
+        const system = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = saved || system;
+      } catch {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-equi"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">DUKE<span class="nav-logo-dot"> LABS.</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb">
+            <svg class="toggle-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="toggle-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+        <button class="mobile-menu-toggle" type="button" data-mobile-menu aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile nav sits inside .nav but outside .nav-inner so it can span full width -->
+    <div class="mobile-nav">
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#services" class="mobile-nav-link">Services</a>
+      <a href="#work" class="mobile-nav-link">Work</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          Schedule a call
+        </div>
+        <h1 class="hero-title reveal reveal-delay-1">We Bring Ideas into<br><span class="title-outline">Intelligent Digital Reality</span></h1>
+        <p class="hero-subtitle reveal reveal-delay-2">
+          AI-driven systems, scalable web & mobile apps, immersive games, and refined UI/UX — engineered to turn vision into measurable impact.
+        </p>
+        <div class="hero-cta reveal reveal-delay-3">
+          <button class="btn-primary" onclick="scrollToSection('services')">
+            <span>Start a Project</span>
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </button>
+          <button class="btn-secondary" onclick="scrollToSection('work')">View Our Work</button>
+        </div>
+        <div class="hero-stats reveal reveal-delay-3">
+          <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Projects Delivered</span></div>
+          <div class="stat-div"></div>
+          <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Global Clients</span></div>
+          <div class="stat-div"></div>
+          <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Years of Experience</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-tag center"></div>
+      <h2 class="section-title fade-in"></h2>
+      <p class="section-subtitle fade-in"></p>
+      <div class="about-grid"></div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-tag center"></div>
+      <h2 class="section-title fade-in"></h2>
+      <p class="section-subtitle fade-in"></p>
+      <div class="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- Work/Portfolio Section -->
+  <section id="work" class="work-section">
+    <div class="container">
+      <div class="section-tag center"></div>
+      <h2 class="section-title fade-in"></h2>
+      <p class="section-subtitle fade-in"></p>
+      
+      <div class="work-filters fade-in">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web-app">Web App</button>
+        <button class="filter-btn" data-filter="mobile-app">Mobile App</button>
+        <button class="filter-btn" data-filter="ai-solution">AI Solution</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="game">Game</button>
+        <!-- <button class="filter-btn" data-filter="full-stack">Full Stack</button> -->
+      </div>
+      
+      <div class="work-grid"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-content fade-in">
+          <div class="section-tag"></div>
+          <h2 class="section-title text-left"></h2>
+          <p class="contact-subtitle"></p>
+          
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              <a href="mailto:" class="contact-value"></a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Phone</span>
+              <a href="tel:" class="contact-value"></a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Location</span>
+              <p class="contact-value"></p>
+            </div>
+          </div>
+
+          <div class="contact-cta">
+            <button class="btn-primary" onclick="alert('Contact form modal would open here')">
+              <span>Schedule a Call</span>
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-form fade-in">
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Tell us about your project..." rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">
+              <span>Send Message</span>
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
