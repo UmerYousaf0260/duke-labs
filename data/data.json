@@ -56,6 +56,12 @@
         "icon": "app-dev"
       },
       {
+        "title": "Web Tracking & Analytics",
+        "description": "Implement robust web tracking and Google Analytics (GA4) setup, event tracking, consent management, and dashboards for actionable insights.",
+        "tags": ["GA4", "Analytics", "Tracking"],
+        "icon": "analytics"
+      },
+      {
         "title": "AI Solutions",
         "description": "Custom AI and machine learning solutions that automate processes, enhance analytics, and drive intelligent decision-making.",
         "tags": ["Python", "TensorFlow", "LLMs"],
@@ -84,7 +90,9 @@
         "id": 1,
         "title": "E-Commerce Platform",
         "description": "A scalable e-commerce solution with AI-powered recommendations and real-time inventory management.",
-        "category": "web-app",
+        "category": "top",
+        "tags": ["E‑Commerce"],
+        "icon": "globe",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
       },
       {
@@ -92,6 +100,8 @@
         "title": "Fitness Tracker App",
         "description": "Cross-platform fitness application with ML-based workout recommendations and social features.",
         "category": "mobile-app",
+        "tags": ["Fitness"],
+        "icon": "smartphone",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
@@ -99,6 +109,8 @@
         "title": "3D Strategy Game",
         "description": "Multiplayer strategy game built with Unreal Engine featuring dynamic environments and real-time gameplay.",
         "category": "game",
+        "tags": ["Game"],
+        "icon": "play-circle",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
       },
       {
@@ -106,6 +118,8 @@
         "title": "Predictive Analytics Platform",
         "description": "Enterprise analytics platform using advanced ML models for business intelligence and forecasting.",
         "category": "ai-solution",
+        "tags": ["Analytics"],
+        "icon": "cpu",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
@@ -113,6 +127,8 @@
         "title": "SaaS Dashboard Redesign",
         "description": "Complete UX/UI overhaul for enterprise dashboard resulting in 40% improved user engagement.",
         "category": "design",
+        "tags": ["Design"],
+        "icon": "layout",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
       },
       {
@@ -120,13 +136,17 @@
         "title": "Social Network Platform",
         "description": "Full-stack social platform with real-time messaging, content delivery, and community management tools.",
         "category": "full-stack",
+        "tags": ["Social"],
+        "icon": "layers",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
         "id": 7,
         "title": "Real-Time Data Dashboard",
         "description": "High-performance web dashboard processing millions of data points with live visualizations and analytics.",
-        "category": "web-app",
+        "category": "top",
+        "tags": ["Realtime"],
+        "icon": "globe",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
       },
       {
@@ -134,6 +154,8 @@
         "title": "Mobile Banking App",
         "description": "Secure cross-platform banking application with biometric authentication and P2P payment features.",
         "category": "mobile-app",
+        "tags": ["Banking"],
+        "icon": "smartphone",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
@@ -141,6 +163,8 @@
         "title": "AI Chatbot System",
         "description": "Intelligent conversational AI system using LLMs for customer support and automation across multiple channels.",
         "category": "ai-solution",
+        "tags": ["AI"],
+        "icon": "cpu",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
@@ -148,6 +172,8 @@
         "title": "WebGL Browser Game",
         "description": "Engaging browser-based game with physics engine, achievements, and multiplayer capabilities.",
         "category": "game",
+        "tags": ["Game"],
+        "icon": "play-circle",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
       },
       {
@@ -155,6 +181,8 @@
         "title": "Design System & Components",
         "description": "Comprehensive design system with 100+ components, accessibility guidelines, and interactive documentation.",
         "category": "design",
+        "tags": ["Design System"],
+        "icon": "layout",
         "gradient": "linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(15, 118, 110, 0.1))"
       },
       {
@@ -162,7 +190,73 @@
         "title": "Microservices E-Learning Platform",
         "description": "Scalable e-learning platform with video streaming, progress tracking, and AI-powered personalized learning paths.",
         "category": "full-stack",
+        "tags": ["E-Learning"],
+        "icon": "layers",
         "gradient": "linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(20, 184, 166, 0.1))"
+      },
+      {
+        "id": 13,
+        "title": "Progressive Web App Builder",
+        "description": "A toolkit for building fast, offline-capable PWAs with one-click deployment and analytics integration.",
+        "category": "web-app",
+        "tags": ["PWA Builder"],
+        "icon": "globe",
+        "gradient": "linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(99, 102, 241, 0.06))"
+      },
+      {
+        "id": 14,
+        "title": "Health & Wellness Mobile",
+        "description": "Personalized wellness app with habit tracking, guided programs, and wearable integrations.",
+        "category": "mobile-app",
+        "tags": ["Wellness"],
+        "icon": "smartphone",
+        "gradient": "linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(34, 197, 94, 0.06))"
+      },
+      {
+        "id": 15,
+        "title": "Indie Puzzle Game",
+        "description": "A handcrafted puzzle experience with procedurally generated levels and a minimalist art direction.",
+        "category": "game",
+        "tags": ["Puzzle"],
+        "icon": "play-circle",
+        "gradient": "linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(139, 92, 246, 0.06))"
+      },
+      {
+        "id": 16,
+        "title": "Recommendation Engine",
+        "description": "Scalable recommendation service using hybrid collaborative and content-based models for tailored suggestions.",
+        "category": "ai-solution",
+        "tags": ["Recommendations"],
+        "icon": "cpu",
+        "gradient": "linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.06))"
+      },
+      {
+        "id": 17,
+        "title": "Marketing Site Redesign",
+        "description": "Brand-led redesign focusing on conversion, accessibility, and a refreshed component library.",
+        "category": "design",
+        "tags": ["Branding"],
+        "icon": "layout",
+        "gradient": "linear-gradient(135deg, rgba(250, 204, 21, 0.10), rgba(249, 115, 22, 0.04))"
+      },
+      {
+        "id": 18,
+        "title": "Cloud Microservices Platform",
+        "description": "Containerized microservices platform with CI/CD, observability, and multi-region deployment support.",
+        "category": "full-stack",
+        "tags": ["Cloud Platform"],
+        "icon": "layers",
+        "gradient": "linear-gradient(135deg, rgba(124, 58, 237, 0.10), rgba(79, 70, 229, 0.04))"
+      }
+      ,
+      {
+        "id": 19,
+        "title": "Accessibility Audit Toolkit",
+        "description": "A toolkit and report generator that scans web apps for accessibility issues and produces prioritized remediation guidance.",
+        "category": "tooling",
+        "tags": ["A11y Toolkit"],
+        "icon": "code",
+        "gradient": "linear-gradient(135deg, rgba(99, 102, 241, 0.10), rgba(6, 182, 212, 0.04))"
       }
     ]
   },
