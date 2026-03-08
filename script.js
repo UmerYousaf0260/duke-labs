@@ -256,7 +256,7 @@ function loadAboutSection(aboutData) {
     aboutGrid.innerHTML = aboutData.cards.map(card => `
       <div class="about-card fade-in">
         <div class="about-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+          <i data-feather="zap"></i>
         </div>
         <h3>${card.title}</h3>
         <p>${card.description}</p>
@@ -266,6 +266,9 @@ function loadAboutSection(aboutData) {
     document.querySelectorAll('.about-card').forEach(el => {
       revealObserver.observe(el);
     });
+    if (window.feather && typeof window.feather.replace === 'function') {
+      window.feather.replace({ 'stroke-width': 2, width: 24, height: 24 });
+    }
   }
 }
 
@@ -282,10 +285,30 @@ function loadServicesSection(servicesData) {
 
   const servicesGrid = document.querySelector('.services-grid');
   if (servicesGrid) {
+    // helper to select feather icon name by our icon key
+    function getServiceIcon(name) {
+      switch (name) {
+        case 'web-dev':
+          return 'globe';
+        case 'app-dev':
+          return 'smartphone';
+        case 'ai-dev':
+          return 'cpu';
+        case 'ui-ux':
+          return 'layout';
+        case 'game-dev':
+          return 'play';
+        case 'analytics':
+          return 'bar-chart-2';
+        default:
+          return 'circle';
+      }
+    }
+
     servicesGrid.innerHTML = servicesData.cards.map(card => `
       <div class="service-card fade-in">
         <div class="service-icon ${card.icon}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <i data-feather="${getServiceIcon(card.icon)}"></i>
         </div>
         <h3>${card.title}</h3>
         <p>${card.description}</p>
@@ -294,11 +317,131 @@ function loadServicesSection(servicesData) {
         </div>
       </div>
     `).join('');
-    
+
+    // replace any data-feather placeholders with SVGs (feather library loaded in index.html)
+    if (window.feather && typeof window.feather.replace === 'function') {
+      // default sizing/stroke
+      window.feather.replace({ 'stroke-width': 1.8, width: 28, height: 28 });
+    }
+
     document.querySelectorAll('.service-card').forEach(el => {
       revealObserver.observe(el);
     });
   }
+}
+
+// ========================
+// Work Section — Bento Card Builder
+// ========================
+
+// Feather SVG paths (inline, no external dep issues)
+const FEATHER_SVGS = {
+  'globe':       '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+  'smartphone':  '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+  'cpu':         '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>',
+  'layout':      '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>',
+  'play-circle': '<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
+  'layers':      '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  'code':        '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  'arrow-up-right': '<line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>',
+};
+
+function makeSVG(name, cls = '') {
+  const paths = FEATHER_SVGS[name] || FEATHER_SVGS['code'];
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="${cls}" aria-hidden="true">${paths}</svg>`;
+}
+
+/**
+ * Bento Layout Engine
+ * -------------------
+ * The 12-column grid is filled row-by-row using repeating ROW TEMPLATES.
+ * Each template defines exactly how many cards fill one row and what
+ * CSS class (col-span) each slot gets. All templates must sum to 12 cols.
+ *
+ * Row templates (sum = 12 cols each):
+ *   A  [8 + 4]         → 1 wide hero  + 1 normal
+ *   B  [4 + 4 + 4]     → 3 normals
+ *   C  [4 + 8]         → 1 normal     + 1 wide hero  (mirror of A)
+ *   D  [4 + 4 + 4]     → 3 normals    (same as B, used as filler)
+ *
+ * The sequence A → B → C → D repeats, giving a varied but predictable rhythm.
+ * When fewer cards are left than a template needs, we fall back to B (equal split).
+ */
+const BENTO_ROW_TEMPLATES = [
+  // [cssClass, colSpan, rowSpan]
+  /* A */ [['bento-hero', 8, 5], ['bento-sq',  4, 5]],
+  /* B */ [['',           4, 4], ['',          4, 4], ['',         4, 4]],
+  /* C */ [['bento-sq',   4, 5], ['bento-hero',8, 5]],
+  /* D */ [['',           4, 4], ['',          4, 4], ['',         4, 4]],
+];
+
+/**
+ * Assign a bento CSS class to every project based on its position in the
+ * repeating row sequence. Returns an array of class strings, one per project.
+ */
+function assignBentoClasses(count) {
+  const classes = [];
+  let i = 0;
+  let templateIndex = 0;
+
+  while (i < count) {
+    const template = BENTO_ROW_TEMPLATES[templateIndex % BENTO_ROW_TEMPLATES.length];
+    const slotsNeeded = template.length;
+    const slotsAvailable = count - i;
+
+    if (slotsAvailable >= slotsNeeded) {
+      // Full template row — assign each slot its designated class
+      template.forEach(([cls]) => classes.push(cls));
+      i += slotsNeeded;
+    } else {
+      // Partial last row — fill remaining cards equally (4-col each)
+      for (let r = 0; r < slotsAvailable; r++) classes.push('');
+      i += slotsAvailable;
+    }
+
+    templateIndex++;
+  }
+
+  return classes;
+}
+
+function buildWorkCard(project, index, bentoClass) {
+  const cat      = project.category || 'all';
+  const iconName = project.icon || 'code';
+  const gradient = project.gradient || 'linear-gradient(135deg,#374151 0%,#111827 100%)';
+  const tags         = (project.tags || []).slice(0, 3);
+  const num          = String(index + 1).padStart(2, '0');
+  const year         = project.year || '2024';
+  const dataCategory = cat;
+
+  return `
+    <div class="work-card ${bentoClass} fade-in" data-category="${dataCategory}" role="article">
+      <div class="work-visual">
+        <div class="work-visual-bg" style="--card-gradient: ${gradient};"></div>
+        <div class="work-orb work-orb-1"></div>
+        <div class="work-orb work-orb-2"></div>
+        <div class="work-icon-wrap">
+          ${makeSVG(iconName)}
+        </div>
+        <span class="work-num">${num}</span>
+      </div>
+      <div class="work-body">
+        <div class="work-card-meta">
+          <span class="work-card-year">${year}</span>
+          <span class="work-card-dot"></span>
+          <span class="work-card-type" style="display:none;">None</span>
+        </div>
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        ${tags.length ? `<div class="work-tags">${tags.map(t => `<span class="work-tag">${t}</span>`).join('')}</div>` : ''}
+      </div>
+      <div class="work-card-footer">
+        <a href="${project.link || '#'}" class="work-link" target="_blank" rel="noopener noreferrer">
+          View Project ${makeSVG('arrow-up-right')}
+        </a>
+        <span class="work-link-dot"></span>
+      </div>
+    </div>`;
 }
 
 // Load Work Section
@@ -314,21 +457,74 @@ function loadWorkSection(workData) {
 
   const workGrid = document.querySelector('.work-grid');
   if (workGrid) {
-    workGrid.innerHTML = workData.projects.map(project => `
-      <div class="work-card fade-in" data-category="${project.category}">
-        <div class="work-image" style="background: ${project.gradient};">
-          <div class="work-category">${project.category.replace('-', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</div>
-        </div>
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <a href="#" class="work-link">View Project →</a>
-      </div>
-    `).join('');
-    
-    document.querySelectorAll('.work-card').forEach(el => {
-      revealObserver.observe(el);
-    });
+    const bentoClasses = assignBentoClasses(workData.projects.length);
+    workGrid.innerHTML = workData.projects.map((project, i) => buildWorkCard(project, i, bentoClasses[i])).join('');
+
+    document.querySelectorAll('.work-card').forEach(el => revealObserver.observe(el));
+
+    // 3D tilt effect on mouse move
+    initWorkCardTilt();
+
+    const activeFilterBtn = document.querySelector('.filter-btn.active');
+    const initialFilter = activeFilterBtn ? activeFilterBtn.dataset.filter || 'all' : 'all';
+    enforceWorkLimit(undefined, 'work.html', initialFilter);
   }
+}
+
+// Subtle 3D tilt on hover
+function initWorkCardTilt() {
+  document.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform = `
+        perspective(700px)
+        rotateX(${-y * 6}deg)
+        rotateY(${x * 6}deg)
+        translateY(-6px)
+      `;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+// Enforce a maximum visible work cards and add a "Show more" button
+function enforceWorkLimit(max = Infinity, morePage = 'work.html', filter = 'all') {
+  const workGrid = document.querySelector('.work-grid');
+  if (!workGrid) return;
+
+  const cards = Array.from(workGrid.querySelectorAll('.work-card'));
+
+  // remove any existing "show more" button (legacy)
+  const existing = document.getElementById('work-show-more');
+  if (existing) existing.remove();
+
+  cards.forEach((card, i) => {
+    const cardCategory = card.dataset.category || 'default';
+
+    let shouldShow = false;
+    if (filter === 'all') {
+      shouldShow = true;
+    } else if (filter === 'top') {
+      shouldShow = cardCategory === 'top';
+    } else {
+      shouldShow = cardCategory === filter;
+    }
+
+    if (shouldShow) {
+      card.style.display = '';
+      card.classList.remove('filter-hidden');
+      card.setAttribute('aria-hidden', 'false');
+      card.style.animationDelay = `${i * 40}ms`;
+    } else {
+      card.style.display = 'none';
+      card.classList.add('filter-hidden');
+      card.setAttribute('aria-hidden', 'true');
+    }
+  });
 }
 
 // Load Contact Section
@@ -399,52 +595,20 @@ if (socialLinksDiv) {
 // ========================
 function initializeWorkFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const workCards = document.querySelectorAll('.work-card');
-
-  // Initialize all cards as visible
-  workCards.forEach(card => card.classList.remove('filter-hidden', 'filter-exit', 'filter-enter', 'filter-enter-active'));
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const toShow = [];
-      const toHide = [];
-
-      workCards.forEach(card => {
-        const matches = filter === 'all' || card.dataset.category === filter;
-        (matches ? toShow : toHide).push(card);
-      });
-
-      // Step 1: fade out ALL visible cards simultaneously
-      workCards.forEach(card => {
-        card.classList.remove('filter-enter', 'filter-enter-active');
-        card.classList.add('filter-exit');
-      });
-
-      // Step 2: after exit animation, hide non-matching and show matching
-      setTimeout(() => {
-        toHide.forEach(card => {
-          card.classList.add('filter-hidden');
-          card.classList.remove('filter-exit');
-        });
-
-        toShow.forEach((card, i) => {
-          card.classList.remove('filter-hidden', 'filter-exit');
-          card.classList.add('filter-enter');
-
-          // Stagger each card's entrance
-          setTimeout(() => {
-            card.classList.add('filter-enter-active');
-            setTimeout(() => card.classList.remove('filter-enter', 'filter-enter-active'), 350);
-          }, i * 60);
-        });
-      }, 200);
+      const filter = btn.dataset.filter || 'all';
+      enforceWorkLimit(undefined, undefined, filter);
     });
   });
+
+  // Apply the default active filter (if any) on load
+  const activeBtn = document.querySelector('.filter-btn.active');
+  const initialFilter = activeBtn ? (activeBtn.dataset.filter || 'all') : 'all';
+  enforceWorkLimit(undefined, undefined, initialFilter);
 }
 
 // Initialize filters after a short delay to ensure DOM is updated
@@ -468,15 +632,72 @@ setTimeout(initializeFadeInObserver, 100);
 function initializeContactForm() {
   const contactForm = document.querySelector('.contact-form form');
   if (contactForm) {
+    // Initialize EmailJS (replace 'YOUR_USER_ID' with your EmailJS user/public key)
+    try {
+      if (window.emailjs && typeof window.emailjs.init === 'function') {
+        window.emailjs.init('YOUR_EMAILJS_USER_ID');
+      }
+    } catch (err) {
+      console.warn('EmailJS init failed', err);
+    }
+
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('Form submitted:', {
-        name: contactForm.elements[0].value,
-        email: contactForm.elements[1].value,
-        message: contactForm.elements[2].value
-      });
-      alert('Thank you for your message! We\'ll get back to you soon.');
-      contactForm.reset();
+
+      const resultDiv = document.getElementById('contact-result');
+      if (resultDiv) {
+        resultDiv.style.display = 'none';
+        resultDiv.className = '';
+      }
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      const templateParams = {
+        user_name: contactForm.elements['user_name']?.value || '',
+        user_email: contactForm.elements['user_email']?.value || '',
+        message: contactForm.elements['message']?.value || ''
+      };
+
+      // If EmailJS is configured, send via EmailJS, otherwise just show the message locally
+      if (window.emailjs && typeof window.emailjs.send === 'function') {
+        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your EmailJS identifiers
+        window.emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+          .then(() => {
+            if (resultDiv) {
+              resultDiv.textContent = 'Thanks — your message has been sent. We\'ll reply shortly.';
+              resultDiv.className = 'contact-success';
+              resultDiv.style.display = '';
+            } else {
+              alert('Thanks — your message has been sent.');
+            }
+            contactForm.reset();
+          }, (error) => {
+            console.error('EmailJS error:', error);
+            if (resultDiv) {
+              resultDiv.textContent = 'Sorry — there was an error sending your message. Please try again later.';
+              resultDiv.className = 'contact-error';
+              resultDiv.style.display = '';
+            } else {
+              alert('Sending failed — please try again later.');
+            }
+          })
+          .finally(() => {
+            if (submitBtn) submitBtn.disabled = false;
+          });
+      } else {
+        // No EmailJS configured — show demo message and log to console
+        console.log('Form submitted (local only):', templateParams);
+        if (resultDiv) {
+          resultDiv.textContent = 'Thanks — your message has been received (demo mode).';
+          resultDiv.className = 'contact-success';
+          resultDiv.style.display = '';
+        } else {
+          alert('Thanks — your message has been received (demo mode).');
+        }
+        contactForm.reset();
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 }
